@@ -5,7 +5,7 @@ def get_produtos():
     with Cursor() as cursor:
         cursor.execute("""
                        SELECT 
-                           p.id, p.nome, p.preco_unitario, p.descricao,
+                           p.id_produto, p.nome, p.preco_unitario, p.descricao,
                            p.peso, c.nome_categoria, p.url_imagem
                        FROM produtos as p
                                 JOIN categorias as c ON c.id_categoria = p.id_categoria
