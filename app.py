@@ -16,13 +16,9 @@ def api_login():
         email = data['email']
         senha = data['senha']
     except KeyError:
-        return jsonify({'successo': False, 'mensagem': 'Dados Invalidos'})
+        return jsonify({'sucesso': False, 'mensagem': 'Dados Invalidos'})
 
-    print(f'{email=} | {senha=}')
-
-    print(f'{login_views.verificar_usuario_db(email, senha)=}')
-
-    return jsonify({'successo': login_views.verificar_usuario_db(email, senha)})
+    return jsonify({'sucesso': login_views.verificar_usuario_db(email, senha)})
 
 
 @app.route('/api/produtos')
