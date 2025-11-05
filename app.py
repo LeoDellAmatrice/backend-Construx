@@ -16,7 +16,7 @@ def api_login():
         email = data['email']
         senha = data['senha']
     except KeyError:
-        return jsonify({'error': 'dados invalidos'})
+        return jsonify({'successo': False, 'mensagem': 'Dados Invalidos'})
 
     return jsonify({'successo': login_views.verificar_usuario_db(email, senha)})
 
