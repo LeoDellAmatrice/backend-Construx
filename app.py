@@ -20,7 +20,7 @@ def api_login():
 
 @app.route('/api/produtos')
 def api_produtos():
-    return jsonify({produtos_views.get_produtos()})
+    return jsonify(produtos_views.get_produtos())
 @app.route('/api')
 def index():
     return jsonify({'message': 'seja bem vindo ao site Construx.'})

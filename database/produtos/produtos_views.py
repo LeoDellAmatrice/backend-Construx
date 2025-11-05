@@ -1,7 +1,7 @@
 from database.connect import Cursor
 
 
-def get_produtos():
+def get_produtos() -> list[dict] | None:
     with Cursor() as cursor:
         cursor.execute("""
                        SELECT 
