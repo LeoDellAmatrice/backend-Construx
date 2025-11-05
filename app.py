@@ -18,6 +18,7 @@ def api_login():
     except KeyError:
         return jsonify({'successo': False, 'mensagem': 'Dados Invalidos'})
 
+    print(login_views.verificar_usuario_db(email, senha))
     return jsonify({'successo': login_views.verificar_usuario_db(email, senha)})
 
 
