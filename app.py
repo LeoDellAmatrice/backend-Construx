@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-# from database.login import login_views
+import database.produtos.produtos_views as produtos_views
 app = Flask(__name__)
 CORS(app)
 
@@ -16,6 +16,11 @@ def api_login():
         return jsonify({'error': 'dados invalidos'})
 
     return True
+
+
+@app.route('/api/produtos')
+def api_produtos():
+    return jsonify({produtos_views.get_produtos()})
 @app.route('/api')
 def index():
     return jsonify({'message': 'seja bem vindo ao site Construx.'})
