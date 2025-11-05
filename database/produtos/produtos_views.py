@@ -17,7 +17,7 @@ def get_produtos() -> list[dict] | None:
 
     list_produtos = []
     for produto in produtos:
-        produto = {
+        list_produtos.append({
             'id': produto[0],
             'nome': produto[1],
             'preco_unitario': produto[2],
@@ -25,7 +25,6 @@ def get_produtos() -> list[dict] | None:
             'peso': produto[4],
             'categoria': produto[5],
             'url_imagem': produto[6]
-        }
-        list_produtos.append(produto)
+        })
 
     return list_produtos
