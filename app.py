@@ -5,7 +5,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('api/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def api_login():
     data = request.get_json(force=True)
 
