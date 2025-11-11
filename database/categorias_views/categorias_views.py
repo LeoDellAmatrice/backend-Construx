@@ -1,6 +1,7 @@
+from typing import Any
 from database.connect import Cursor
 
-def get_categorias() -> list[dict] | None:
+def get_categorias() -> dict[str, str] | list[Any]:
     with Cursor() as cursor:
         cursor.execute("""
             SELECT id_categoria, nome_categoria FROM categorias
@@ -17,3 +18,21 @@ def get_categorias() -> list[dict] | None:
             'nome_categoria': categoria[1],
         })
     return lista_categorias
+
+
+def get_categorias_by_id(categoria_id):
+
+    with Cursor() as cursor:
+        cursor.execute("""
+            SELECT id_categoria, nome_categoria FROM categorias
+                WHERE id_categoria = %s
+        """, (categoria_id, ))
+        categoria = cursor.fetchone()
+
+    if not categoria:
+        return {'error': 'Categoria não encontrada'}
+
+    return {
+        'id_categoria': categoria[0],
+        'nome_categoria': categoria[1],
+    }

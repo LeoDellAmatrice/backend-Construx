@@ -29,6 +29,12 @@ def api_produtos():
 def api_categorias():
     return jsonify(categorias_views.get_categorias())
 
+@app.route('/api/categorias/<int:categoria_id>')
+def api_categoria_by_id(categoria_id):
+
+    return categorias_views.get_categorias_by_id(categoria_id)
+
+
 @app.route('/api')
 def index():
     return jsonify({'message': 'seja bem vindo ao site Construx.'})
