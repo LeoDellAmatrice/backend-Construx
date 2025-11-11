@@ -25,20 +25,26 @@ def api_login():
 def api_produtos():
     return jsonify(produtos_views.get_produtos())
 
+
 @app.route('/api/categorias')
 def api_categorias():
     return jsonify(categorias_views.get_categorias())
 
+
 @app.route('/api/categorias/<int:categoria_id>')
 def api_categoria_by_id(categoria_id):
-
     return categorias_views.get_categorias_by_id(categoria_id)
 
 
 @app.route('/api/produtos/categorias/<int:categoria_id>')
 def api_produtos_by_id_categoria(categoria_id):
-
     return produtos_views.get_produtos_by_id_categoria(categoria_id)
+
+
+@app.route('/api/produtos/<int:id_produto>')
+def api_produto_by_id(id_produto):
+    return produtos_views.get_produto_by_id(id_produto)
+
 
 @app.route('/api')
 def index():
