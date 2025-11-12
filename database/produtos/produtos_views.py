@@ -96,3 +96,34 @@ def get_produto_by_id(produto_id):
         'categoria': produto[5],
         'url_imagem': produto[6]
     }
+
+
+def busca_produtos_by_name(busca_name: str):
+    with Cursor() as cursor:
+        cursor.execute("""
+                       SELECT p.id_produto,
+                              p.nome,
+                              p.preco_unitario,
+                              p.descricao,
+                              p.peso,
+                              c.nome_categoria,
+                              p.url_imagem
+                       FROM produtos as p
+                                JOIN categorias as c ON c.id_categoria = p.id_categoria
+                       WHERE similarity(p.nome, %s) > 0.1
+                       ORDER BY similarity(p.nome, %s) DESC;
+                       """, (busca_name, busca_name))
+        produtos = cursor.fetchall()
+
+    lista_produtos = []
+    for produto in produtos:
+        lista_produtos.append({
+            'id': produto[0],
+            'nome': produto[1],
+            'preco_unitario': produto[2],
+            'descricao': produto[3],
+            'peso': produto[4],
+            'categoria': produto[5],
+            'url_imagem': produto[6]
+        })
+    return lista_produtos
