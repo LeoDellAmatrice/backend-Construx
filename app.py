@@ -26,8 +26,14 @@ def api_produtos():
     return jsonify(produtos_views.get_produtos())
 
 
-@app.route('/api/busca/produtos/<string:busca_name>')
-def api_busca_proutos(busca_name: str):
+@app.route('/api/busca/produtos/')
+def api_busca_proutos():
+
+    busca_name = request.args.get('busca_name', None)
+
+    if busca_name is None:
+        return jsonify({'sucesso': False, 'mensagem': 'Dados Invalidos'})
+
     return jsonify(produtos_views.busca_produtos_by_name(busca_name))
 
 @app.route('/api/categorias')
