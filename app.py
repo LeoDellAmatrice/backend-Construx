@@ -29,7 +29,7 @@ def api_produtos():
 @app.route('/api/busca/produtos/')
 def api_busca_proutos():
 
-    busca_name = request.args.get('busca_name', None)
+    busca_name = request.args.get('busca_nome', None)
 
     if busca_name is None:
         return jsonify({'sucesso': False, 'mensagem': 'Dados Invalidos'})
