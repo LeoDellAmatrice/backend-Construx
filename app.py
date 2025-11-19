@@ -23,7 +23,15 @@ def api_login():
 
 @app.route('/api/user/email', methods=['GET'])
 def api_user_by_email():
-    email = request.json.get('email')
+
+    try:
+        email = request.json.get('email')
+        if email is None:
+            raise Exception
+    except Exception as e:
+
+        return {"mensagem": f"{e}"}
+
     return login_views.get_usuario_by_email(email)
 
 
