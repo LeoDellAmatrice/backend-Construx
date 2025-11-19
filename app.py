@@ -21,6 +21,12 @@ def api_login():
     return jsonify({'sucesso': login_views.verificar_usuario_db(email, senha)})
 
 
+@app.route('/api/user/email', methods=['GET'])
+def api_user_by_email():
+    email = request.json.get('email')
+    return login_views.get_usuario_by_email(email)
+
+
 @app.route('/api/produtos')
 def api_produtos():
     return jsonify(produtos_views.get_produtos())
